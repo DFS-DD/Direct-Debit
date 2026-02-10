@@ -1,4 +1,4 @@
-name: Deploy Vite App
+name: Deploy Vite App (Safe Mode)
 
 on:
   push:
@@ -25,13 +25,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
+      # This command forces the build and sets the correct base path manually
       - name: Build
-        run: npm run build
+        run: npx vite build --base=/Direct-Debit/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
